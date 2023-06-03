@@ -1,0 +1,95 @@
+@import '../base/variables.scss';
+@import '../elements/input.scss';
+@import '../elements/input-select';
+@import '../base/mixins';
+
+
+
+:host {
+  @include box-sizing;
+  & .wrapper {
+    background-color: $login-bg;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+  }
+
+  & .logo-visiting-media {
+    margin-top: 25px;
+    margin-bottom: 48px;
+  }
+
+  & .register-container {
+    width: 382px;
+    background: #fff;
+    padding: 34px 24px 24px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    border: 1px solid $black-15;
+  }
+
+  & .register-form {
+    display: flex;
+    flex-flow: column;
+  }
+
+  & .inputs-group {
+    display: flex;
+    flex-flow: column;
+    row-gap: 17px;
+
+    & input {
+      color: #000;
+    }
+
+    & label {
+      color: #000;
+    }
+
+    & .select-wrapper {
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  & .submit-button {
+    width: 100%;
+    font-size: 16px;
+    font-family: inherit;
+    text-align: center;
+    background: $login-btn-bg;
+    height: 40px;
+    border: 0;
+    color: white;
+    border-radius: 2px;
+    margin: 24px 0;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px 1px $outline;
+    }
+  }
+
+  & .sign-in {
+    font-size: 14px;
+    color: $font-color;
+    text-align: center;
+
+    & .btn-sign-in {
+      color: $link-color;
+      font-weight: 500;
+      background: transparent;
+      font-family: inherit;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+  }
+
+  & input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

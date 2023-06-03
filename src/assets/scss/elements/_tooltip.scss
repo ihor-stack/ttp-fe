@@ -1,0 +1,101 @@
+@import '../base/variables.scss';
+ttp-tooltip {
+  & .tooltip-wrapper {
+    position: absolute;
+    // min-width: 100%;
+    width: auto;
+    left: 0;
+    background: $tooltip-bg;
+    padding: 3px 8px;
+    border-radius: 2px;
+    top: 0;
+    z-index: 999;
+    transition: all 0.15s linear;
+    visibility: hidden;
+    opacity: 0;
+    min-width: auto;
+
+    &.right {
+      left: calc(8px + 100%);
+      top: calc((100% - 24px) / 2);
+    }
+
+    &.left {
+      left: 0;
+      top: calc((100% - 24px) / 2);
+    }
+
+    &.top {
+      left: 0;
+      top: -34px;
+    }
+
+    &.bottom {
+      left: 0;
+      top: 34px;
+    }
+
+    &.hide {
+      display: none;
+    }
+    &.show {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+    }
+    & .tooltip {
+      // background: $tooltip-bg;
+      color: white;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+      white-space: nowrap;
+    }
+    .position-bottom {
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+
+      border-bottom: 8px solid $tooltip-bg;
+      position: absolute;
+      left: calc(50% - 8px);
+      top: -8px;
+    }
+
+    .position-top {
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+
+      border-top: 8px solid $tooltip-bg;
+      position: absolute;
+      bottom: -8px;
+      left: calc(50% - 8px);
+    }
+
+    .position-left {
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 8px solid $tooltip-bg;
+      position: absolute;
+      right: -8px;
+      top: calc(50% - 8px);
+    }
+
+    .position-right {
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+
+      border-right: 8px solid $tooltip-bg;
+      position: absolute;
+      left: -8px;
+      top: 4px;
+    }
+  }
+}

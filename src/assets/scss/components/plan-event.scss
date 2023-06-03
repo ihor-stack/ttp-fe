@@ -1,0 +1,156 @@
+@import '../base/variables.scss';
+
+ttp-plan-event {
+  & .wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 130px;
+  }
+  & .plan-event-wrapper {
+    display: flex;
+    row-gap: 60px;
+    flex-flow: column;
+    padding-top: 30px;
+    align-items: center;
+  }
+
+  & .plan-event-container {
+    width: 440px;
+    background: #fff;
+    padding: 52px 48px 48px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    border: 1px solid $black-15;
+  }
+
+  & .plan-title {
+    margin-bottom: 42px;
+  }
+  & .plan-event-form {
+    display: flex;
+    flex-flow: column;
+    row-gap: 24px;
+    position: relative;
+  }
+
+  & .inputs-group {
+    display: flex;
+    flex-flow: column;
+    row-gap: 16px;
+    &--row {
+      flex-flow: row;
+      column-gap: 16px;
+      & ttp-input,
+      & ttp-input-date,
+      & ttp-input-select {
+        width: 118px;
+        flex-shrink: 0;
+      }
+      & ttp-button-select {
+        width: 80px;
+      }
+    }
+    &--dimensions {
+      justify-content: center;
+    }
+  }
+
+  & .btn-next {
+    width: 100%;
+    text-align: center;
+    background: $login-btn-bg;
+    height: 48px;
+    border: 0;
+    color: white;
+    border-radius: 2px;
+    margin: 16px 0 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+  }
+
+  & .btn-previous {
+    width: 100%;
+    text-align: center;
+    background: $white;
+    color: $login-btn-bg;
+    height: 48px;
+    border: 0;
+    margin: 16px 0 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+  }
+
+  & .form-button-group {
+    display: flex;
+  }
+
+  & .form-error-message {
+    font-size: 11px;
+    text-align: center;
+    color: $input-border-color-error;
+    position: absolute;
+    bottom: -24px;
+    left: 0;
+    width: 100%;
+  }
+
+  & .qs-datepicker-container {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    width: 19em;
+    padding: 32px 16px 16px;
+    & .qs-controls {
+      background: white;
+      margin-bottom: 6px;
+      & .qs-month-year {
+        font-weight: 400;
+      }
+    }
+    & .qs-day {
+      font-weight: 300;
+      color: rgba(0, 0, 0, 0.38);
+    }
+    & .qs-square {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 14px;
+    }
+
+    .qs-square:not(.qs-empty):not(.qs-disabled):not(.qs-day):not(.qs-active):hover {
+      background: $day-selected-bg;
+      border-radius: 50%;
+      color: white;
+    }
+    & .qs-active,
+    .qs-range-end,
+    .qs-range-start,
+    .qs-range-middle {
+      background: $day-selected-bg;
+      color: white;
+    }
+    & .qs-current {
+      text-decoration: none;
+    }
+    & .qs-range-start {
+      border-radius: 50% 0 0 50%;
+    }
+    & .qs-range-end {
+      border-radius: 0% 50% 50% 0%;
+    }
+  }
+
+  & .time-zone-container {
+    padding: 0 16px;
+    color: $font-color;
+    &__label {
+      font-size: 12px;
+    }
+    &__zone {
+      line-height: 1.7;
+    }
+  }
+}

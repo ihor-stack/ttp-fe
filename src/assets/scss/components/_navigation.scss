@@ -1,0 +1,118 @@
+main-header {
+  width: 100%;
+  display: block;
+  background-color: $header-bg;
+  height: 40px;
+  .header {
+    padding: 0 8px;
+    height: 40px;
+  }
+  & .header-content {
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 34px;
+    justify-content: space-between;
+    border-bottom: 1px solid $border-color;
+    height: 40px;
+  }
+  .btn-logo {
+    font-size: 0;
+    display: flex;
+    align-items: center;
+    column-gap: 18px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  img.logo {
+    width: 127px;
+    height: auto;
+  }
+  nav {
+    .ttp-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      column-gap: 19px;
+      align-items: center;
+      &__item {
+        & .btn-dash {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          transition: all 0.15s linear;
+          & svg {
+            stroke-width: 1px;
+          }
+          &:hover {
+            background-color: $black-05;
+          }
+        }
+        &.active {
+          & .btn-dash {
+            background-color: $black-05;
+            & svg {
+              stroke-width: 1.5px;
+            }
+          }
+        }
+      }
+    }
+    & .ttp-submenu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      position: absolute;
+      background: $white;
+      right: 16px;
+      top: 0;
+
+      border-radius: 2px;
+      font-size: 12px;
+      padding: 4px 0;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.2s, visibility 0.2s;
+      box-shadow: 0px 0px 10px $black-15;
+
+      margin: 42px 0px;
+      z-index: 10;
+      & li {
+        line-height: 1;
+        transition: all 0.15s linear;
+        color: $black;
+
+        &.btn-padding {
+          padding: 12px 24px;
+        }
+        & button {
+          cursor: pointer;
+          padding: 12px 24px;
+          width: 100%;
+          text-align: left;
+          font-size: inherit;
+          &:hover {
+            background: $subnav-hover-bg;
+          }
+        }
+      }
+
+      &.show {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+  & button {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+}

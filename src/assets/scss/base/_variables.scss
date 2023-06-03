@@ -1,0 +1,76 @@
+/* Company Colors */
+$magenta: #8f0339;
+$magenta-50: rgba(143, 3, 57, 0.5);
+$magenta-bright: #c90451;
+
+/* Greys */
+$grey-light: #e5e5e5;
+$grey-light-2: #979797;
+$grey-lightest: #f5f5f5;
+$grey-medium: #555;
+$grey-dark: #333;
+$black-05: rgba(0, 0, 0, 0.05);
+$black-10: rgba(0, 0, 0, 0.1);
+$black-15: rgba(0, 0, 0, 0.15);
+$black-80: rgba(0, 0, 0, 0.8);
+$black-50: rgba(0, 0, 0, 0.5);
+
+$black: #000000;
+$white: #ffffff;
+
+/* Colors to items */
+/* Fonts */
+$font-color: $grey-dark;
+$link-color: $magenta;
+
+/* Login Screen */
+$login-bg: $grey-lightest;
+$login-btn-bg: $magenta;
+
+/* Forms Checkbox */
+$checkbox-checked: $magenta;
+$checkbox-hover: $grey-light;
+$checkbox-border: $grey-dark;
+$input-text-color: $grey-dark;
+$input-border-color-hover: $grey-dark;
+$input-border-color-error: $magenta-bright;
+
+/* Switch */
+$switch-label-color: $grey-medium;
+$switch-toggle-circle-unchecked: $grey-dark;
+$switch-toggle-circle-checked: $magenta;
+$switch-toggle-bar-bg: $grey-light-2;
+$switch-toggle-circle-focus-unchecked: $grey-dark;
+
+/* General */
+$header-bg: $grey-lightest;
+$border-color: $black-15;
+$body-bg: $grey-lightest;
+$subnav-hover-bg: $grey-lightest;
+$hr-bg: $black-15;
+$outline: $magenta-50;
+
+/* Calendar */
+$day-selected-bg: $magenta;
+
+/* Tooltip */
+$tooltip-bg: $black-80;
+
+/* Buttons */
+$btn-primary: $magenta;
+
+/* Sidenav */
+$sidenav-icon-color: $black-50;
+$sidenav-icon-color-selected: $black;
+
+/* Toolbar */
+$toolbar-text-color: $black;
+$toolbar-border-color: $black-05;
+$toolbar-box-shadow: $black-10;
+
+/* Dashboard Sidebar */
+$dash-sidebar-text-color: $grey-medium;
+$dash-sidebar-text-color-hover: $black-05;
+
+/* Fonts */
+$font-dm: 'DM Serif Display';

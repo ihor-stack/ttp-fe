@@ -1,0 +1,10 @@
+stages:
+  - build
+
+build:
+  stage: build
+  script: 
+    - CI="" /etc/gitlab-runner/git/build.sh
+  after_script:
+    - if [ ${CI_JOB_STATUS} == "success" ]; then EXIT_STATUS=0; else  EXIT_STATUS=1; fi
+    - CI="" source /etc/gitlab-runner/git/slackscript.sh; share_slack_update_build

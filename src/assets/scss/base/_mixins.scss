@@ -1,0 +1,207 @@
+@import './variables.scss';
+@mixin box-sizing {
+  box-sizing: border-box;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+}
+
+@mixin input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid $black-15;
+  border-radius: 2px;
+  display: flex;
+  position: relative;
+  transition: all 0.15s linear;
+
+  & .postfix {
+    align-self: center;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    display: flex;
+    height: inherit;
+    align-items: center;
+    column-gap: 12px;
+    padding-left: 8px;
+    z-index: 2;
+    &__icon {
+      align-self: center;
+    }
+    &__text {
+      font-weight: 400;
+      font-size: inherit;
+    }
+  }
+  /* Animated Input start */
+  & .input {
+    position: relative;
+    width: 100%;
+    &__input {
+      padding: 0 16px;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      color: $input-text-color;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-family: inherit;
+      font-size: inherit;
+      z-index: 2;
+      background: transparent;
+
+      &::placeholder {
+        color: $input-text-color;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    &__label {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0;
+      color: $input-text-color;
+      cursor: text;
+      transition: top 0.15s ease-in, left 0.15s ease-in, font-size 0.15s ease-in;
+      background-color: $white;
+      font-size: 16px;
+      line-height: 1.3;
+      white-space: nowrap;
+      z-index: 1;
+      & > span {
+        position: relative;
+      }
+      &:before {
+        content: '';
+        width: 100%;
+        background: $white;
+        height: 100%;
+        display: block;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        padding: 0 6px;
+        left: -6px;
+        min-width: calc(100% + 12px);
+      }
+    }
+  }
+
+  &.focused {
+    border-color: $input-border-color-hover;
+    box-shadow: 0 0 0 1px $input-border-color-hover;
+    .input__label {
+      top: -1px;
+      font-size: 12px;
+      left: 16px;
+      padding: 0;
+      z-index: 2;
+    }
+  }
+
+  &--error {
+    border-color: $input-border-color-error;
+    &.focused {
+      border-color: $input-border-color-error;
+      box-shadow: none;
+      & .input__label {
+        color: $input-border-color-error;
+      }
+    }
+    & .input__label {
+      color: $input-border-color-error;
+    }
+  }
+
+  & .input-error-message {
+    position: absolute;
+    font-size: 12px;
+    top: 105%;
+    left: 16px;
+    color: $input-border-color-error;
+  }
+
+  .input__input:focus ~ .input__label,
+  .input__input:not(:placeholder-shown).input__input:not(:focus)
+    ~ .input__label,
+  .input__input:-webkit-autofill ~ .input__label {
+    top: -1px;
+    font-size: 12px;
+    left: 16px;
+    padding: 0;
+    z-index: 2;
+  }
+
+  & input:-webkit-autofill,
+  & input:-webkit-autofill:hover,
+  & input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: #333;
+    // box-shadow: inset 0 0 0px 1000px rgba(255, 255, 255, 0.1);
+    // -webkit-box-shadow: inset 0 0 0px 1000px rgba(255, 255, 255, 0.1);
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
+      inset 0 0 0 100px rgba(255, 255, 255, 1);
+  }
+
+  & input:-internal-autofill-selected {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
+      inset 0 0 0 100px rgba(255, 255, 255, 1);
+  }
+}
+
+@mixin select-wrapper {
+  overflow: hidden;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  position: absolute;
+  max-height: 236px;
+  width: auto;
+  min-width: 100%;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 3;
+  display: none;
+  &.show {
+    display: block;
+  }
+  &.select-time-notation {
+    height: auto;
+  }
+  & .select {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    height: inherit;
+    max-height: inherit;
+    & li {
+      height: 40px;
+      line-height: 40px;
+      padding: 0 16px;
+      white-space: nowrap;
+      cursor: pointer;
+      &:hover {
+        background: #f5f5f5;
+        text-shadow: 0 0 black, 0 0 black;
+      }
+    }
+  }
+}

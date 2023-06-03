@@ -1,0 +1,111 @@
+stages:
+  # - test
+  - deploy
+
+# Disabled the sonarcheck - It needs high end Linode
+# sonarqube-check:
+#   stage: test
+#   image: 
+#     name: sonarsource/sonar-scanner-cli:latest
+#     entrypoint: [""]
+#   variables:
+#     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+#     GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+#   cache:
+#     key: "${CI_JOB_NAME}"
+#     paths:
+#       - .sonar/cache
+#   script: 
+#     - sonar-scanner
+#   allow_failure: true
+#   only:
+#     - dev # or the name of your main branch
+
+build_and_deploy:
+  image: visitingmedia/ubuntu22_nodejs18        
+  stage: deploy
+  variables:
+    ENV: ${VM_ENV}      
+    SCMD: "s3cmd --region=US --host=us-east-1.linodeobjects.com --host=%(bucket)s.us-east-1.linodeobjects.com --host-bucket=%(bucket)s.us-east-1.linodeobjects.com --no-progress --stats  --no-check-hostname "
+    slack_msg_header: ":x: *Build to ${CI_PROJECT_NAME} failed*"
+    SUCCESS: 0    
+    TXT_BLUE: "\e[1m\e[34m"
+    TXT_CLEAR: "\e[0m"
+    NETLIFY: "node_modules/netlify-cli/bin/run"
+    CMD1: " -q rm -r -f s3://$VMHOST-${ENV}-fe/ "
+    CMD2: " ws-create --ws-index=index.html --ws-error=404.html s3://$VMHOST-${ENV}-fe/ "
+    CMD3: " ws-info s3://$VMHOST-${ENV}-fe/ "
+    CMD4: " --quiet --no-progress --stats --no-mime-magic --acl-public --delete-removed --delete-after sync public/ s3://$VMHOST-${ENV}-fe/ "
+  environment:
+    name: $VM_ENV
+    # url: ${ENV_URL}
+#  before_script:
+#- TXT_BLUE="\e[1m\e[34m" && TXT_CLEAR="\e[0m"    
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - |
+      echo " "
+      echo -e "$TXT_BLUE"
+      echo -e "=========================="
+      echo -e "Deploying in ${ENV} "
+      echo -e "$TXT_BLUE==========================$TXT_CLEAR" 
+      echo " "
+      if [[ ("${ENV}" == 'dev') || ("${ENV}" == 'qa') || ("${ENV}" == 'demo') ]]; then SCMD="${SCMD} --access_key=${NPROD_AKEY} --secret_key=${NPROD_SKEY}  " && LINODE=1; fi
+      if [[ "$ENV" == 'prod' ]]; then SCMD="${SCMD} --access_key=${PROD_AKEY} --secret_key=${PROD_SKEY} "  && LINODE=1; fi
+      if [[ "${SSH_HOST}" == 'bestmadecheese' ]]; then LINODE=0; fi
+
+      CI=false
+      sleep 1
+      npm i
+      npm run --error build  
+      echo "${LINODE}"
+      if [[ "${LINODE}" == 1 ]]; then $SCMD $CMD1 && $SCMD $CMD2 && $SCMD $CMD3 && $SCMD $CMD4; fi
+      if [[ "${LINODE}" == 0 ]]; then npm install netlify-cli && "${NETLIFY}" deploy --prod --dir=public; fi
+
+  after_script:      
+    - |
+      echo "${CI_JOB_STATUS}"
+      if [[ "${CI_JOB_STATUS}" == "success"  ]]; then EXIT_STATUS=0; else EXIT_STATUS=2; fi
+      if [[ "${EXIT_STATUS}" == "${SUCCESS}" ]]; then slack_msg_header="':white_check_mark:' *Build to ${CI_PROJECT_NAME} - ${ENV} succeeded*"; fi
+      tee SLACK <<EOF
+      {
+        "blocks": [
+       {
+        "type": "section",
+        "text": {
+         "type": "mrkdwn",
+         "text": "${slack_msg_header}"
+         }
+        },
+        {
+         "type": "divider"
+         },
+         {
+         "type": "section",
+         "fields": [
+           {
+            "type": "mrkdwn",
+            "text": "*Stage:*\nBuild"
+           },
+           {
+            "type": "mrkdwn",
+            "text": "*Pushed By:*\n${GITLAB_USER_NAME}"
+            }
+         ]
+         },
+          {
+           "type": "section",
+           "text": {
+          "type": "mrkdwn",
+           "text": "*Project:* ${CI_PROJECT_NAME}\n*Branc/Tag:* ${CI_COMMIT_REF_NAME}\n*Building Environment:* ${ENV}\n*Job URL:* <${CI_JOB_URL}|${CI_JOB_ID}>"
+            }
+          },
+          {
+         "type": "divider"
+           }      
+       ]
+      }
+      EOF
+      curl  --silent --show-error --fail --request POST --data "@SLACK" "${SLACK_WEB_URL}"

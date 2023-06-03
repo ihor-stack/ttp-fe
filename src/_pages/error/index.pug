@@ -1,0 +1,14 @@
+extends /layouts/error.pug
+
+block variables
+  - var title = 'Error';
+
+block scripts
+  script(type='module').
+    import { eventBus } from './assets/js/main.mjs';
+    setTimeout(() => {
+      const loader = document.querySelector('ttp-loader');
+      loader.isError = true;
+    }, 1500);
+
+block router

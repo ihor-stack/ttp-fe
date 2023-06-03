@@ -1,0 +1,20 @@
+- var version = '2022-07-26-001';
+meta(charset='utf-8')
+meta(
+  name='viewport',
+  content='width=device-width, initial-scale=1, shrink-to-fit=no'
+)
+meta(http-equiv='Cache-Control', content='no-store')
+
+base(href='/')
+meta(name='description', content='')
+link(rel='icon', type='image/x-icon', href='/assets/img/favicon.png')
+
+link(rel='stylesheet', href=`/assets/css/styles.css?v=${version}`)
+script(src=`/assets/js/index.mjs?v=${version}`, type='module')
+
+title Visiting Media Truetour Plan #{ title }
+
+// Manual tag versionning as of now
+script.
+  window.ttpVersion = '#{ version }';

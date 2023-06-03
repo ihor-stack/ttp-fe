@@ -1,0 +1,98 @@
+@import '../base/mixins';
+@import '../base/variables';
+@import '../elements/input-select';
+@import '../elements/input';
+@import '../elements/stepper';
+
+:host {
+  @include box-sizing;
+  & .wrapper {
+    background-color: $login-bg;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    margin-top: 24px  ;
+  }
+
+  & .property-container {
+    width: 382px;
+    background: #fff;
+    padding: 32px 24px 24px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    border: 1px solid $black-15;
+  }
+
+  & .property-form {
+    display: flex;
+    flex-flow: column;
+  }
+
+  & .inputs-group {
+    display: flex;
+    flex-flow: column;
+    row-gap: 17px;
+
+    & input {
+      color: #000;
+    }
+
+    & label {
+      color: #000;
+    }
+
+    & .select-wrapper {
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 382px;
+      & ul {
+        overflow-x: hidden;
+      }
+    }
+
+    & .input-container--error {
+      & .icon {
+        & svg {
+          stroke: $input-border-color-error;
+        }
+      }
+    }
+  }
+
+  & .submit-button {
+    width: 100%;
+    font-size: 16px;
+    font-family: inherit;
+    text-align: center;
+    height: 40px;
+    border: 0;
+    background-color: $login-btn-bg;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 24px;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px 1px $outline;
+    }
+  }
+
+  & .time-zone-container {
+    padding: 0 8px;
+    color: $font-color;
+    &__label {
+      font-size: 12px;
+    }
+    &__zone {
+      line-height: 1.7;
+    }
+  }
+
+  & input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

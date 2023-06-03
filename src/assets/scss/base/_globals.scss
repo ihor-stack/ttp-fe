@@ -1,0 +1,61 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: $body-bg;
+  color: #000;
+  font-weight: 400;
+}
+
+.hidden {
+  display: none;
+}
+
+.ttp-app {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.layout-base-wrapper {
+  height: calc(100vh - 40px);
+  overflow: hidden;
+}
+
+.layout-event-wrapper {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout-login-wrapper {
+  height: 100%;
+}
+
+.planner-view {
+  position: relative;
+}
+
+/* Dashboard Layout */
+
+.dashboard-wrapper {
+  display: flex;
+  flex-flow: row;
+  & #side-nav {
+    width: 230px;
+    flex-basis: 230px;
+    height: calc(100vh - 40px);
+    border-right: 1px solid $border-color;
+  }
+  & .dashboard-content {
+    flex: 1;
+    position: relative;
+  }
+}
+
+.layout-dash-wrapper {
+  width: calc(100vw - 230px);
+}

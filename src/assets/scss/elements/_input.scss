@@ -1,0 +1,66 @@
+@import '../base/mixins';
+
+ttp-input {
+  // width: 100%;
+  & .input-container {
+    @include input;
+    &--toolbar {
+      height: 24px;
+      width: 30px;
+      & .input__input {
+        padding: 4px 6px;
+      }
+    }
+
+    &--setup {
+      height: 24px;
+      width: auto;
+      & .input__input {
+        text-align: right;
+        padding: 4px 6px;
+      }
+
+      & .postfix {
+        right: 6px;
+        height: 23px;
+      }
+    }
+
+    &--toolbar-setup {
+      height: 24px;
+      width: auto;
+      min-width: 40px;
+      &.input-container--haspostfix {
+        min-width: 50px;
+        & .input__input {
+          padding: 4px 20px 4px 6px;
+        }
+      }
+      & .input__input {
+        padding: 4px 6px;
+        text-align: center;
+      }
+      & .postfix {
+        right: 6px;
+        height: 23px;
+      }
+    }
+  }
+
+  &.input-full {
+    .input-container {
+      height: 100%;
+    }
+  }
+
+  &.input-light {
+    .input-container {
+      border-color: $white;
+      background: $white;
+
+      &.focused {
+        border-color: $input-border-color-hover;
+      }
+    }
+  }
+}

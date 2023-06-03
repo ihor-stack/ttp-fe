@@ -1,0 +1,41 @@
+extends /layouts/base.pug
+
+block variables
+  - var title = 'Slots';
+
+block scripts
+
+block router
+  script(type='module').
+    import { createComponent, html, renderer, withEventBus, eventBus, loadStyles } from '/assets/js/main.mjs';
+    import { createSlotsComponent } from '/assets/js/components/slots/slots.mjs';
+    createSlotsComponent({
+      createComponent,
+      html,
+      renderer,
+      eventBus,
+      withEventBus,
+    });
+
+  style.
+    .slots {
+      padding: 16px;
+    }
+    h3 {
+      font-weight: 600;
+      font-size: 24px;
+      margin: 16px 0 16px 16px;
+    }
+  .slots
+    h3 Daily Quotes
+    ttp-slots
+      div(slot='quote')
+        q Keep your face always toward the sunshine, and shadows will fall behind you.
+      div(slot='who')
+        | --Walt Whitman
+
+    ttp-slots
+      div(slot='quote')
+        q Success is not final, failure is not fatal: it is the courage to continue that counts.
+      div(slot='who')
+        | --Winston Churchill

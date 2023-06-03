@@ -1,0 +1,204 @@
+@import '../base/variables.scss';
+ttp-toolbar {
+  & .toolbar-wrapper {
+    background: $white;
+    border: 1px solid $toolbar-border-color;
+    box-shadow: 0px 0px 10px $toolbar-box-shadow;
+    border-radius: 2px;
+    z-index: 10;
+    padding: 12px 16px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: $toolbar-text-color;
+    font-size: 12px;
+    line-height: 16px;
+    display: none;
+    transform-origin: bottom left;
+    width: auto;
+    &.visible {
+      display: block;
+    }
+  }
+
+  & .toolbar-content {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+  }
+
+  & .toolbar-go-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    cursor: pointer;
+  }
+
+  & .toolbar-item {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 16px;
+    row-gap: 8px;
+    position: relative;
+    &__label {
+      text-transform: uppercase;
+    }
+
+    &:first-child {
+      padding: 0 16px 0 0;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      background: $toolbar-border-color;
+      right: 0;
+      top: 0;
+    }
+
+    &:last-child {
+      padding: 0 0 0 16px;
+      &:after {
+        content: none;
+      }
+    }
+
+    &--remove {
+      cursor: pointer;
+    }
+
+    &--add-chairs {
+      flex-flow: row;
+      column-gap: 16px;
+
+      & .chairs-icon {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        cursor: pointer;
+        row-gap: 6px;
+      }
+    }
+
+    &--duplicate {
+      flex-flow: row;
+      // column-gap: 16px;
+      & .duplicate-icon {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        cursor: pointer;
+        row-gap: 8px;
+        height: 48px;
+        justify-content: end;
+      }
+    }
+    &--horizontal {
+      flex-flow: row;
+      column-gap: 16px;
+      & .duplicate-icon {
+        width: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+
+    & .toolbar-item__icon-input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 8px;
+    }
+
+    & .input-duplicate-wrapper {
+      // font-size: 0;
+      width: 0;
+      transform: scale(0);
+      transform-origin: left;
+      //hiding
+      transition: opacity 0.05s linear, width 0.1s linear, transform 0.1s linear;
+      opacity: 0;
+      &.show {
+        opacity: 1;
+        transform: scale(1);
+        width: 100px;
+        //showing
+        transition: width 0.1s linear, opacity 0.1s linear,
+          transform 0.05s linear;
+        // font-size: inherit;
+      }
+      & .form-add-chairs {
+        display: flex;
+        flex-flow: row;
+        column-gap: 4px;
+        justify-content: flex-end;
+        align-items: center;
+        justify-content: center;
+
+        .btn-group {
+          flex-flow: row;
+          column-gap: 4px;
+          display: none;
+          &.show {
+            display: flex;
+          }
+          & > button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+    & .input-add-chairs {
+      display: none;
+      width: 100%;
+      &.show {
+        display: block;
+      }
+      & .form-add-chairs {
+        display: flex;
+        flex-flow: row;
+        column-gap: 4px;
+        align-items: center;
+        justify-content: center;
+        max-width: fit-content;
+        margin: auto;
+        .btn-group {
+          flex-flow: row;
+          column-gap: 4px;
+          display: none;
+          &.show {
+            display: flex;
+          }
+          & > button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}

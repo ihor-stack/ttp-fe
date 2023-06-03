@@ -1,0 +1,21 @@
+block variables
+doctype html
+html(lang='en')
+  head
+    include /_head
+    block head
+    block scripts
+
+  body
+    #ttp-app.ttp-app
+      main-header
+
+      #router
+        main.layout-base-wrapper
+          block router
+
+    ttp-loader#initial-loading(
+      is-loading='true',
+      is-full-screen='false',
+      is-error='false'
+    )

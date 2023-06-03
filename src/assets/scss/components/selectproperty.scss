@@ -1,0 +1,95 @@
+@import '../base/mixins';
+@import '../base/variables';
+
+:host {
+  @include box-sizing;
+  & .wrapper {
+    background-color: $login-bg;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .logo-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    transform: translate(-50%, 0);
+  }
+
+  & .select-cards-container {
+    display: flex;
+    flex-flow: row;
+    gap: 24px;
+  }
+
+  & .select-card {
+    width: 200px;
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+
+    cursor: pointer;
+    &-inactive {
+      cursor: default;
+      & .select-card-box {
+        background-color: #fafafa;
+        border-color: #e7e7e7;
+      }
+    }
+    &:not(&-inactive):hover {
+      & .select-card-box {
+        border: 1px solid $black;
+      }
+      & .select-card-title {
+        color: $black;
+        font-weight: 500;
+      }
+
+      & svg {
+        rect {
+          fill: $black;
+          width: 1.5px;
+        }
+        path {
+          stroke: $black;
+          stroke-width: 1.2px;
+        }
+      }
+    }
+  }
+
+  & .select-card-box {
+    background: $white;
+    border: 1px solid $black-15;
+    border-radius: 2px;
+    height: 200px;
+    width: 100%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .select-card-title {
+    height: 28px;
+    font-size: 12px;
+    line-height: 16px;
+    color: $grey-medium;
+    text-align: center;
+
+    p {
+      margin: 0;
+      span {
+        font-weight: 600;
+      }
+    }
+
+    p.coming-soon {
+      font-weight: 600;
+      color: $black-50;
+    }
+  }
+}

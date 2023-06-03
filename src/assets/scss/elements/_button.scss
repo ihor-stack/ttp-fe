@@ -1,0 +1,51 @@
+@import '../base/variables.scss';
+@import '../base/mixins';
+
+.btn {
+  &-primary {
+    width: 100%;
+    text-align: center;
+    background: $btn-primary;
+    height: 32px;
+    border: 0;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 0 16px;
+
+    &.btn-outline {
+      background: white;
+      border: 1px solid $btn-primary;
+      color: $btn-primary;
+    }
+  }
+
+  &-select-link {
+    .select-button {
+      background: transparent;
+      border: 0;
+
+      button {
+        padding: 0 8px 0 12px;
+      }
+    }
+
+    .arrow-icon {
+      margin-left: 10px;
+      margin-top: -3px;
+
+      &.rotate {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  &-lg {
+    height: 40px;
+    font-size: 14px;
+  }
+}

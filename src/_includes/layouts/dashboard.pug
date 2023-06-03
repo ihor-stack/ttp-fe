@@ -1,0 +1,26 @@
+block variables
+doctype html
+html(lang='en')
+  head
+    include /_head
+    block head
+    block scripts
+
+  body
+    #ttp-app.ttp-app
+      main-header
+
+      #dashboard.dashboard-wrapper
+        #side-nav
+          ttp-dashboard-sidenav
+
+        section.dashboard-content
+          ttp-loader#dashboard-loader(
+            is-loading='true',
+            is-full-screen='false'
+          )
+          #router
+            main.layout-dash-wrapper
+              block router
+
+    ttp-loader#initial-loading(is-loading='true', is-full-screen='false')
